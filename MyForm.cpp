@@ -1,4 +1,5 @@
 #include "form.h"
+#include "author_form.h"
 
 using namespace System;
 using namespace System::Windows::Forms;

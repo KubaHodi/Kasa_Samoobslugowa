@@ -36,8 +36,8 @@ namespace app {
 			}
 		}
 	private: System::Windows::Forms::Label^ title;
-	private: System::Windows::Forms::PictureBox^ pictureBox1;
-	private: System::Windows::Forms::Label^ label1;
+
+
 	private: System::Windows::Forms::Button^ button1;
 	protected:
 
@@ -56,12 +56,8 @@ namespace app {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->title = (gcnew System::Windows::Forms::Label());
-			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// title
@@ -76,30 +72,6 @@ namespace app {
 			this->title->Size = System::Drawing::Size(496, 55);
 			this->title->TabIndex = 0;
 			this->title->Text = L"Kasa samoobs³ugowa";
-			// 
-			// pictureBox1
-			// 
-			this->pictureBox1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->InitialImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.InitialImage")));
-			this->pictureBox1->Location = System::Drawing::Point(12, 686);
-			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(264, 343);
-			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
-			this->pictureBox1->TabIndex = 1;
-			this->pictureBox1->TabStop = false;
-			this->pictureBox1->WaitOnLoad = true;
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(238)));
-			this->label1->Location = System::Drawing::Point(12, 659);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(193, 24);
-			this->label1->TabIndex = 2;
-			this->label1->Text = L"Autor: Jakub Hodurek";
 			// 
 			// button1
 			// 
@@ -120,13 +92,10 @@ namespace app {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1904, 1041);
 			this->Controls->Add(this->button1);
-			this->Controls->Add(this->label1);
-			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->title);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -137,8 +106,8 @@ namespace app {
 
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
-		app:Author form;
-		form.Show();
+		app::Author form;
+		form.ShowDialog();
 	}
 };
 }
