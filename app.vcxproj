@@ -138,7 +138,7 @@
       <DependentUpon>author_form.h</DependentUpon>
       <DeploymentContent>true</DeploymentContent>
     </EmbeddedResource>
-    <EmbeddedResource Include="cash.resx">
+    <EmbeddedResource Include="CashForm.resx">
       <DependentUpon>cash.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form.resx">
