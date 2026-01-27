@@ -4,7 +4,7 @@ using namespace System;
 namespace app {
 	public enum Jednostka {
 		Sztuka,
-		Kilogram,
+		Kilogram
 	};
 
 	public ref class ArtykulSpozywczy {

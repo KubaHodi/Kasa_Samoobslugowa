@@ -21,9 +21,9 @@ namespace app {
 		CashForm(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: W tym miejscu dodaj kod konstruktora
-			//
+			produkty = PrzykladoweDane::PobierzProdukty();
+			dane->AutoGenerateColumns = true;
+			dane->DataSource = ProduktyDoTabeli(produkty);
 		}
 
 	protected:
@@ -52,13 +52,38 @@ namespace app {
 		/// Wymagana zmienna projektanta.
 		/// </summary>
 		System::ComponentModel::Container ^components;
+	private: System::Windows::Forms::DataGridView^ dane;
+		   List<ArtykulSpozywczy^>^ produkty;
 
+		DataTable^ ProduktyDoTabeli(List<ArtykulSpozywczy^>^ lista) {
+			DataTable^ dt = gcnew DataTable();
+			dt->Columns->Add("Rodzaj", String::typeid);
+			dt->Columns->Add("Jednostka", String::typeid);
+			dt->Columns->Add("Cena", double::typeid);
+			dt->Columns->Add("Ilosc", double::typeid);
+			dt->Columns->Add("Wartosc", double::typeid);
+
+			for each (ArtykulSpozywczy ^ a in lista)
+			{
+				DataRow^ r = dt->NewRow();
+				r["Rodzaj"] = a->Rodzaj;
+				r["Jednostka"] = System::Enum::GetName(
+					Jednostka::typeid,
+					System::Enum::ToObject(Jednostka::typeid, a->Jedn)
+				);
+				r["Cena"] = a->Cena;
+				r["Ilosc"] = a->Ilosc;
+				r["Wartosc"] = a->Wartosc();
+				dt->Rows->Add(r);
+			}
+			return dt;
+		}
 #pragma region Windows Form Designer generated code
 		/// <summary>
 		/// Metoda wymagana do obs³ugi projektanta — nie nale¿y modyfikowaæ
 		/// jej zawartoœci w edytorze kodu.
 		/// </summary>
-		List<ArtykulSpozywczy^>^ produkty;
+		
 
 		void InitializeComponent(void)
 		{
@@ -71,8 +96,10 @@ namespace app {
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->dane = (gcnew System::Windows::Forms::DataGridView());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dane))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// textBox1
@@ -171,12 +198,21 @@ namespace app {
 			this->pictureBox2->TabIndex = 7;
 			this->pictureBox2->TabStop = false;
 			// 
+			// dane
+			// 
+			this->dane->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dane->Location = System::Drawing::Point(629, 390);
+			this->dane->Name = L"dane";
+			this->dane->Size = System::Drawing::Size(685, 343);
+			this->dane->TabIndex = 8;
+			// 
 			// CashForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::SeaGreen;
 			this->ClientSize = System::Drawing::Size(1904, 1041);
+			this->Controls->Add(this->dane);
 			this->Controls->Add(this->pictureBox2);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
@@ -189,10 +225,10 @@ namespace app {
 			this->Text = L"cash";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dane))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
-			produkty = PrzykladoweDane::PobierzProdukty();
 		}
 #pragma endregion
 	};
