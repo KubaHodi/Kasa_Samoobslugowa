@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{6c0904da-463b-46a7-9084-3a3bfe4a61e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{9f5a0648-d9e8-49a3-a0ad-663b7b78c2ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyForm.cpp">
@@ -28,6 +34,12 @@
     </ClInclude>
     <ClInclude Include="cash.h">
       <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="Article.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="PrzykladoweDane.h">
+      <Filter>Data</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
