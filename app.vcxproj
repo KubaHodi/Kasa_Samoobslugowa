@@ -131,6 +131,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AuthorForm.resx">
+      <DependentUpon>author_form.h</DependentUpon>
+      <DeploymentContent>true</DeploymentContent>
+    </EmbeddedResource>
     <EmbeddedResource Include="form.resx">
       <DependentUpon>form.h</DependentUpon>
     </EmbeddedResource>

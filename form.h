@@ -105,8 +105,7 @@ namespace app {
 	}
 
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-
-		app::Author form;
+		app::AuthorForm form;
 		form.ShowDialog();
 	}
 };

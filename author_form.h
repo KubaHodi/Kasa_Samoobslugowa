@@ -12,10 +12,10 @@ namespace app {
 	/// <summary>
 	/// Podsumowanie informacji o MyForm1
 	/// </summary>
-	public ref class Author : public System::Windows::Forms::Form
+	public ref class AuthorForm : public System::Windows::Forms::Form
 	{
 	public:
-		Author(void)
+		AuthorForm(void)
 		{
 			InitializeComponent();
 			//
@@ -27,13 +27,19 @@ namespace app {
 		/// <summary>
 		/// Wyczyœæ wszystkie u¿ywane zasoby.
 		/// </summary>
-		~Author()
+		~AuthorForm()
 		{
 			if (components)
 			{
 				delete components;
 			}
 		}
+
+	private: System::Windows::Forms::Label^ author_label;
+	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	protected:
+
+	protected:
 
 	private:
 		/// <summary>
@@ -48,11 +54,47 @@ namespace app {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = gcnew System::ComponentModel::Container();
-			this->Size = System::Drawing::Size(1920,1080);
-			this->Text = L"Author";
-			this->Padding = System::Windows::Forms::Padding(0);
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(AuthorForm::typeid));
+			this->author_label = (gcnew System::Windows::Forms::Label());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			this->SuspendLayout();
+			// 
+			// author_label
+			// 
+			this->author_label->AutoSize = true;
+			this->author_label->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->author_label->Location = System::Drawing::Point(711, 407);
+			this->author_label->Name = L"author_label";
+			this->author_label->Size = System::Drawing::Size(490, 55);
+			this->author_label->TabIndex = 1;
+			this->author_label->Text = L"Autor: Jakub Hodurek";
+			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
+			this->pictureBox1->InitialImage = nullptr;
+			this->pictureBox1->Location = System::Drawing::Point(787, 30);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(311, 359);
+			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->pictureBox1->TabIndex = 2;
+			this->pictureBox1->TabStop = false;
+			// 
+			// Author
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->ClientSize = System::Drawing::Size(1904, 1041);
+			this->Controls->Add(this->pictureBox1);
+			this->Controls->Add(this->author_label);
+			this->Name = L"Author";
+			this->Text = L"Author";
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			this->ResumeLayout(false);
+			this->PerformLayout();
+
 		}
 #pragma endregion
 	};
