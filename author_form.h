@@ -65,6 +65,7 @@ namespace app {
 			this->author_label->AutoSize = true;
 			this->author_label->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
+			this->author_label->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->author_label->Location = System::Drawing::Point(711, 407);
 			this->author_label->Name = L"author_label";
 			this->author_label->Size = System::Drawing::Size(490, 55);
@@ -82,14 +83,15 @@ namespace app {
 			this->pictureBox1->TabIndex = 2;
 			this->pictureBox1->TabStop = false;
 			// 
-			// Author
+			// AuthorForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::Color::SeaGreen;
 			this->ClientSize = System::Drawing::Size(1904, 1041);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->author_label);
-			this->Name = L"Author";
+			this->Name = L"AuthorForm";
 			this->Text = L"Author";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);

@@ -1,4 +1,6 @@
 #include "author_form.h"
+#include "cash.h"
+
 #pragma once
 
 namespace app {
@@ -39,6 +41,8 @@ namespace app {
 
 
 	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Button^ button3;
 	protected:
 
 	protected:
@@ -58,6 +62,8 @@ namespace app {
 		{
 			this->title = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// title
@@ -86,11 +92,40 @@ namespace app {
 			this->button1->UseVisualStyleBackColor = false;
 			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
 			// 
+			// button2
+			// 
+			this->button2->BackColor = System::Drawing::SystemColors::ActiveCaption;
+			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->button2->Location = System::Drawing::Point(820, 154);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(304, 88);
+			this->button2->TabIndex = 4;
+			this->button2->Text = L"PrzejdŸ do aplikacji";
+			this->button2->UseVisualStyleBackColor = false;
+			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
+			// 
+			// button3
+			// 
+			this->button3->BackColor = System::Drawing::SystemColors::ActiveCaption;
+			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->button3->Location = System::Drawing::Point(822, 290);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(302, 96);
+			this->button3->TabIndex = 5;
+			this->button3->Text = L"WyjdŸ";
+			this->button3->UseVisualStyleBackColor = false;
+			this->button3->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::Color::SeaGreen;
 			this->ClientSize = System::Drawing::Size(1904, 1041);
+			this->Controls->Add(this->button3);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->title);
 			this->Name = L"MyForm";
@@ -106,6 +141,13 @@ namespace app {
 
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		app::AuthorForm form;
+		form.ShowDialog();
+	}
+	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+		Application::Exit();
+	}
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		app:CashForm form;
 		form.ShowDialog();
 	}
 };

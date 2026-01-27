@@ -123,6 +123,9 @@
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cash.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="form.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -134,6 +137,9 @@
     <EmbeddedResource Include="AuthorForm.resx">
       <DependentUpon>author_form.h</DependentUpon>
       <DeploymentContent>true</DeploymentContent>
+    </EmbeddedResource>
+    <EmbeddedResource Include="cash.resx">
+      <DependentUpon>cash.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form.resx">
       <DependentUpon>form.h</DependentUpon>
