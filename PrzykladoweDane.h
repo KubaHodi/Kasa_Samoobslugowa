@@ -12,10 +12,10 @@ namespace app {
         {
             List<ArtykulSpozywczy^>^ produkty = gcnew List<ArtykulSpozywczy^>();
 
-            produkty->Add(gcnew ArtykulSpozywczy("Chleb pszenny", 5.49, Jednostka::Sztuka, 1));
-            produkty->Add(gcnew ArtykulSpozywczy("Bu³ka kajzerka", 0.89, Jednostka::Sztuka, 6));
-            produkty->Add(gcnew ArtykulSpozywczy("Jab³ka", 4.99, Jednostka::Kilogram, 1.5));
-            produkty->Add(gcnew ArtykulSpozywczy("Ziemniaki", 2.99, Jednostka::Kilogram, 3.0));
+            produkty->Add(gcnew ArtykulSpozywczy("Chleb pszenny", 5.49, Jednostka::Sztuka, 0));
+            produkty->Add(gcnew ArtykulSpozywczy("Bu³ka kajzerka", 0.89, Jednostka::Sztuka, 0));
+            produkty->Add(gcnew ArtykulSpozywczy("Jab³ka", 4.99, Jednostka::Kilogram, 0));
+            produkty->Add(gcnew ArtykulSpozywczy("Ziemniaki", 2.99, Jednostka::Kilogram, 0));
 
             return produkty;
         }

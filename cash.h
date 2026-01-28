@@ -22,8 +22,22 @@ namespace app {
 		{
 			InitializeComponent();
 			produkty = PrzykladoweDane::PobierzProdukty();
+			koszyk = gcnew List<ArtykulSpozywczy^>();
 			dane->AutoGenerateColumns = true;
 			dane->DataSource = ProduktyDoTabeli(produkty);
+
+			dane->SelectionMode = DataGridViewSelectionMode::FullRowSelect;
+			dane->MultiSelect = false;
+
+			if (dane->Columns["Dodaj"] == nullptr)
+			{
+				auto col = gcnew System::Windows::Forms::DataGridViewButtonColumn();
+				col->Name = "Dodaj";
+				col->HeaderText = "";
+				col->Text = "Dodaj";
+				col->UseColumnTextForButtonValue = true;
+				dane->Columns->Add(col);
+			}
 		}
 
 	protected:
@@ -51,10 +65,18 @@ namespace app {
 		/// <summary>
 		/// Wymagana zmienna projektanta.
 		/// </summary>
+		/// 
+		String^ JednostkaNaTekst(Jednostka j) {
+			switch (j) {
+			case Jednostka::Sztuka: return "szt.";
+			case Jednostka::Kilogram: return "kg.";
+			default: return "";
+			}
+		}
+
 		System::ComponentModel::Container ^components;
 	private: System::Windows::Forms::DataGridView^ dane;
-		   List<ArtykulSpozywczy^>^ produkty;
-
+		List<ArtykulSpozywczy^>^ produkty;
 		DataTable^ ProduktyDoTabeli(List<ArtykulSpozywczy^>^ lista) {
 			DataTable^ dt = gcnew DataTable();
 			dt->Columns->Add("Rodzaj", String::typeid);
@@ -67,10 +89,7 @@ namespace app {
 			{
 				DataRow^ r = dt->NewRow();
 				r["Rodzaj"] = a->Rodzaj;
-				r["Jednostka"] = System::Enum::GetName(
-					Jednostka::typeid,
-					System::Enum::ToObject(Jednostka::typeid, a->Jedn)
-				);
+				r["Jednostka"] = JednostkaNaTekst(a->Jedn);
 				r["Cena"] = a->Cena;
 				r["Ilosc"] = a->Ilosc;
 				r["Wartosc"] = a->Wartosc();
@@ -78,6 +97,16 @@ namespace app {
 			}
 			return dt;
 		}
+
+		List<ArtykulSpozywczy^>^ koszyk;
+
+		ArtykulSpozywczy^ ZnajdzPoRodzaju(String^ rodzaj)
+		{
+			for each (ArtykulSpozywczy ^ a in produkty)
+				if (a->Rodzaj == rodzaj) return a;
+			return nullptr;
+		}
+
 #pragma region Windows Form Designer generated code
 		/// <summary>
 		/// Metoda wymagana do obs³ugi projektanta — nie nale¿y modyfikowaæ
@@ -205,6 +234,7 @@ namespace app {
 			this->dane->Name = L"dane";
 			this->dane->Size = System::Drawing::Size(685, 343);
 			this->dane->TabIndex = 8;
+			this->dane->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &CashForm::dane_CellContentClick);
 			// 
 			// CashForm
 			// 
@@ -231,5 +261,23 @@ namespace app {
 
 		}
 #pragma endregion
-	};
+	private: System::Void dane_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {	
+		if (e->RowIndex < 0) return;
+
+		if (dane->Columns[e->ColumnIndex]->Name == "Dodaj")
+		{
+			DataGridViewRow^ row = dane->Rows[e->RowIndex];
+
+			double cena = safe_cast<double>(row->Cells["Cena"]->Value);
+			double ilosc = safe_cast<double>(row->Cells["Ilosc"]->Value);
+
+			ilosc += 1.0;
+
+			row->Cells["Ilosc"]->Value = ilosc;
+			row->Cells["Wartosc"]->Value = ilosc * cena;
+
+			dane->Refresh();
+		}
+	}
+};
 }
