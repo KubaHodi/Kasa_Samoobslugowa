@@ -13,14 +13,15 @@ namespace app {
 		property String^ Rodzaj;
 		property double Cena;
 		property Jednostka Jedn;
-
+		property String^ Kategoria;
 		property double Ilosc;
 
-		ArtykulSpozywczy(String^ rodzaj, double cena, Jednostka jedn, double ilosc) {
+		ArtykulSpozywczy(String^ rodzaj, double cena, Jednostka jedn, double ilosc, String^ kategoria) {
 			Rodzaj = rodzaj;
 			Cena = cena;
 			Jedn = jedn;
 			Ilosc = ilosc;
+			Kategoria = kategoria;
 		}
 
 		double Wartosc() {
